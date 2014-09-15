@@ -56,7 +56,7 @@ bool Canvas::mutex_release(int x, int y, int id)
 				return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 Thread::Thread(int thread_id, bool strict_mode):
