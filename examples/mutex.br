@@ -1,0 +1,10 @@
+ v
+vt                      11m 11n 2.@
+
+  A thread mutexes below, blocking
+  the above thread from ending
+  until it releases the mutex.
+
+> 11m                             v
+v                                 <
+> 11n 1.@   Release mutex and end
