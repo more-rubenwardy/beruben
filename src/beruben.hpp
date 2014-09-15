@@ -43,7 +43,7 @@ enum EDIR
 class Thread
 {
 public:
-	Thread(int thread_id);
+	Thread(int thread_id, bool strict_mode);
 	
 	// Executing
 	int step(Canvas *canvas);
@@ -68,12 +68,13 @@ private:
 	std::vector<char> stack;
 	int id;
 	bool string_mode;
+	bool strict;
 };
 
 class Interpreter
 {
 public:
-	Interpreter(bool enable_sleep = false);
+	Interpreter(bool enable_sleep = false, bool strict_mode = true);
 	bool run();
 	bool loadfile(const char *filename);	
 	bool runfile(const char *filename);
@@ -82,6 +83,7 @@ private:
 	std::vector<Thread*> threads;
 	int th_count;
 	bool sleeping;
+	bool strict;
 };
 
 }; // END NAMESPACE BERUBEN

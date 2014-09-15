@@ -59,13 +59,14 @@ bool Canvas::mutex_release(int x, int y, int id)
 	return false;
 }
 
-Thread::Thread(int thread_id):
+Thread::Thread(int thread_id, bool strict_mode):
 	c_x(0),
 	c_y(0),
 	direction(EDIR_RIGHT),
 	is_alive(true),
 	id(thread_id),
-	string_mode(false)
+	string_mode(false),
+	strict(strict_mode)
 {}
 
 int Thread::step(Canvas *canvas)
@@ -259,6 +260,14 @@ int Thread::step(Canvas *canvas)
 		} else {			
 			debug("?" << symbol << "["
 				  << (int)symbol << "]");
+			if (strict) {
+				std::cerr << std::endl <<
+						"Unknown symbol '" << symbol
+						<< "' [code:" << (int)symbol
+						<< "] encountered at (" << c_x
+						<< ", " << c_y << ")";
+				return ST_CRASH;
+			}
 		}
 	}}
 	
@@ -329,15 +338,16 @@ bool IsDead(const Thread *thread)
 	return !thread->is_alive;
 }
 
-Interpreter::Interpreter(bool enable_sleep):
+Interpreter::Interpreter(bool enable_sleep, bool strict_mode):
 	th_count(0),
-	sleeping(enable_sleep)
+	sleeping(enable_sleep),
+	strict(strict_mode)
 {}
 
 bool Interpreter::run()
 {
 	threads.clear();
-	threads.push_back(new Thread(++th_count));
+	threads.push_back(new Thread(++th_count, strict));
 	
 	while (threads.size() > 0) {
 		std::vector<Thread*> toadd;
@@ -345,7 +355,7 @@ bool Interpreter::run()
 				it != threads.end(); ++it) {
 			int res = (*it)->step(&canvas);
 			if (res == ST_NEW_THREAD) {
-				Thread *thread = new Thread(++th_count);
+				Thread *thread = new Thread(++th_count, strict);
 				thread->setStack((*it)->getStack());
 				thread->c_x = (*it)->c_x + 1;
 				thread->c_y = (*it)->c_y;
