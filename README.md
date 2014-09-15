@@ -20,4 +20,12 @@ Linux
 sudo apt-get install build-essentials
 cmake .
 make -j3
-./bin/befunge examples/test.br -s
+
+# install
+sudo make install
+beruben examples/hello_world.br -s
+
+# or portable
+./bin/beruben examples/hello_world.br -s
+```
+

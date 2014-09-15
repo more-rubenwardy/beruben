@@ -14,6 +14,7 @@ Each character is a single instruction that does something.
 > 0             v  Write comments in places that will never be run.
 v "hello world" <  Add "hello world" to the stack.
 > , v              Printing out loop
+    :
 ^   _ @
 ```
 
