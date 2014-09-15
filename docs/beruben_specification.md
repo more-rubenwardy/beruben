@@ -38,52 +38,57 @@ Instructions
 
 Control
 -------
->	Right
-<	Left
-v	Down
-^	Up
-#	Jump over next command
-[	Skip til next ]
-]	End skip
-_	If a is 0, go right, else go left
-|	If a is 0, go up, else go down
-g	Gets value from code at (b, a)
-p	Puts value c to code at (b, a)
-t	Start new thread (see threading)
-m	Mutex at code position (b, a) (see threading)
-n	Release mutex at code position (b, a) (see threading)
-@	Exit thread
+
+I    | Description
+---- | ----------------------------------------
+>    | Right
+<    | Left
+v    | Down
+^    | Up
+#    | Jump over next command
+[    | Skip til next ]
+]    | End skip
+_    | If a is 0, go right, else go left
+|    | If a is 0, go up, else go down
+g    | Gets value from code at (b, a)
+p    | Puts value c to code at (b, a)
+t    | Start new thread (see threading)
+m    | Mutex at code position (b, a) (see threading)
+n    | Release mutex at code position (b, a) (see threading)
+@    | Exit thread
 
 Operations
 ----------
--	b-a
-+	b+a
-/	b/a
-*	b*a
-%	b%a
-=	b==a, adds 0(true) or 1(false) to stack
-!	Not. [if(a>0) then 0, else 1;]
-:	Duplicate a
+
+I    | Description
+---- | ----------------------------------------
+-    | b-a
++    | b+a
+/    | b/a
+*    | b*a
+%    | b%a
+=    | b==a, adds 0(true) or 1(false) to stack
+!    | Not. [if(a>0) then 0, else 1;]
+:    | Duplicate a
 
 Input Output
 ------------
-1	puts number on stack
-"str"	puts a string on the stack
-i	Input Character
-n	Input Number
-, 	Output Character
-. 	Output Number
 
-If file is open:
-r	Read character from file
-y	Read number from file
-w	Write character to file
-e	Write number to file
-c	Close file
-
-If file is closed:
-o	Open file for reading (filename is taken off the stack until 0 is reached)
-a	Open file for writing
+I     | Description
+----- | ----------------------------------------
+1     | puts number on stack
+"str" | puts a string on the stack
+i     | Input Character
+n     | Input Number
+,     | Output Character
+.     | Output Number
+r     | Read character from file
+y     | Read number from file
+w     | Write character to file
+e     | Write number to file
+c     | Close file
+o     | Open file for reading (filename is taken off the stack until 0 is reached)
+a     | Open file for writing
 
 Please note that once you read or write from a file, the mode is set.
 
