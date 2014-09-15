@@ -17,7 +17,7 @@ Linux
 -----
 
 ```
-sudo apt-get install build-essentials
+sudo apt-get install build-essential
 cmake .
 make -j3
 
