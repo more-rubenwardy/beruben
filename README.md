@@ -1,10 +1,16 @@
 Beruben Interpreter
 ===================
 
-An interpreter for the Beruben language.
+An interpreter for the Beruben language, inspired heavily by Beruben.
+
+__Features:__
+* Multi-threading
+* File input output
+* Modules / importing of files
+
 See docs/beruben_specification.md for details on syntax.
 
-License: LGPL 2.1 or later
+License: LGPL 3.0 or later
 
 Written by rubenwardy.
 
