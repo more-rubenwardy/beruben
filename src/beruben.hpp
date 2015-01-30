@@ -35,7 +35,7 @@ namespace beruben {
 class Canvas
 {
 public:
-	void set(int x, int y, char value);	
+	void set(int x, int y, char value);
 	const char get(int x, int y);
 	bool mutex(int x, int y, int id);
 	bool mutex_release(int x, int y, int id);
@@ -62,23 +62,23 @@ class Thread
 {
 public:
 	Thread(int thread_id, bool strict_mode);
-	
+
 	// Executing
 	int step(Canvas *canvas);
 	bool is_alive;
 
-	// Location	
-	void move();	
+	// Location
+	void move();
 	void setPosition(int px, int py, EDIR dir);
 
 	// Stack
 	const char pop();
-	inline int pop_int(){return (int)pop();}
-	inline void push(char inp){stack.push_back(inp);}
-	std::vector<char> getStack(){ return stack; }
-	void setStack(std::vector<char> s){ stack = s; }
+	int pop_int() {return (int)pop();}
+	void push(char inp) {stack.push_back(inp);}
+	std::vector<char> getStack() { return stack; }
+	void setStack(std::vector<char> s) { stack = s; }
 	void printStack();
-	
+
 	int c_x;
 	int c_y;
 	EDIR direction;
@@ -94,10 +94,10 @@ class Interpreter
 public:
 	Interpreter(bool enable_sleep = false, bool strict_mode = true);
 	bool run();
-	bool loadfile(const char *filename);	
+	bool loadfile(const char *filename);
 	bool runfile(const char *filename);
 private:
-	Canvas canvas;
+	std::map<std::string, Canvas*> canvases;
 	std::vector<Thread*> threads;
 	int th_count;
 	bool sleeping;

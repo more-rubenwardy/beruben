@@ -92,11 +92,11 @@ int Thread::step(Canvas *canvas)
 {
 	if (!is_alive)
 		return 0;
-	
+
 	const char symbol = canvas->get(c_x, c_y);
-	
+
 	if (string_mode) {
-		if (symbol == '"') {			
+		if (symbol == '"') {
 			string_mode = false;
 			move();
 			return 0;
@@ -172,7 +172,7 @@ int Thread::step(Canvas *canvas)
 	case 'n':{
 		int a = pop_int();
 		int b = pop_int();
-		if (!canvas->mutex_release(b, a, id)) {			
+		if (!canvas->mutex_release(b, a, id)) {
 			debug("Mutex release failure\t");
 			printStack();
 			is_alive = false;
@@ -197,7 +197,7 @@ int Thread::step(Canvas *canvas)
 		push((pop_int() == 0)?1:0);
 		break;
 	}
-	
+
 	/*
 		Numerical Operators
 	*/
@@ -276,7 +276,7 @@ int Thread::step(Canvas *canvas)
 			int num = (int)symbol - 48;
 			debug("Num " << num);
 			stack.push_back(num);
-		} else {			
+		} else {
 			debug("?" << symbol << "["
 				  << (int)symbol << "]");
 			if (strict) {
@@ -289,12 +289,12 @@ int Thread::step(Canvas *canvas)
 			}
 		}
 	}}
-	
+
 	debug("\t");
 	printStack();
 
-	move();	
-	return 0;	
+	move();
+	return 0;
 }
 
 void Thread::move()
@@ -367,7 +367,7 @@ bool Interpreter::run()
 {
 	threads.clear();
 	threads.push_back(new Thread(++th_count, strict));
-	
+
 	while (threads.size() > 0) {
 		std::vector<Thread*> toadd;
 		for (std::vector<Thread*>::const_iterator it = threads.begin();
@@ -407,13 +407,13 @@ bool Interpreter::loadfile(const char *filename)
 	// Read file into canvas
 	std::string line;
 	std::ifstream file(filename);
-	if (!file)		
+	if (!file)
 		return false;
-	int y = 0;		
+	int y = 0;
 	while (std::getline(file, line)) {
 		int x = 0;
 		for(std::string::iterator it = line.begin(); it != line.end(); ++it) {
-		    char c = *it;
+			char c = *it;
 			if (c == '\t')
 				x += CHARS_IN_TAB;
 			else {
