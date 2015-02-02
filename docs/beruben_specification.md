@@ -29,9 +29,10 @@ The import lines are included as part of the row count,
 but navigating to an import line will result in an error.
 
 ```
-v Import "test.rb" as A
-> 25*: A
+> 0 "file.brA" i      A @
 ```
+
+Modules modify their own canvas when doing p & g.
 
 Instructions
 ============
@@ -52,6 +53,7 @@ _    | If a is 0, go right, else go left
 |    | If a is 0, go up, else go down
 g    | Gets value from code at (b, a)
 p    | Puts value c to code at (b, a)
+l    | Restore the canvas to original value (undo any puts)
 t    | Start new thread (see threading)
 m    | Mutex at code position (b, a) (see threading)
 n    | Release mutex at code position (b, a) (see threading)
@@ -78,8 +80,8 @@ I     | Description
 ----- | ----------------------------------------
 1     | puts number on stack
 "str" | puts a string on the stack
-i     | Input Character
-n     | Input Number
+~     | Input Character
+;     | Input Number
 ,     | Output Character
 .     | Output Number
 r     | Read character from file
@@ -89,6 +91,7 @@ e     | Write number to file
 c     | Close file
 o     | Open file for reading (filename is taken off the stack until 0 is reached)
 a     | Open file for writing
+i     |  Include module as letter a.
 
 Please note that once you read or write from a file, the mode is set.
 
